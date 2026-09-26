@@ -5,11 +5,11 @@
 		<description>COM_SIMPLEHUB_XML_DESCRIPTION</description>
 		<element>com_simplehub</element>
 		<type>component</type>
-		<version>0.4.5</version>
+		<version>1.0.0</version>
 		<downloads>
 			<downloadurl type="full" format="zip">https://raw.githubusercontent.com/adstam/simplehub/main/com_simplehub.zip</downloadurl>
 		</downloads>
-		<sha256>f200abd1dd64cf41e38dd7c0964ed7ac74a64697a9baeed658209537d4f9a94a</sha256>
+		<sha256>77f1266f0bce5dcf0fa5f4349191ae4f03f94d97045ddfe03893bf3c6466284a</sha256>
 		<targetplatform name="joomla" version="[56].[1234]" />
 		<php_minimum>8.1</php_minimum>
 	</update>

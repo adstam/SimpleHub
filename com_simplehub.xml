@@ -2,7 +2,7 @@
 <extension type="component" method="upgrade">
 	<name>SimpleHub</name>
 
-	<creationDate>26-09-2026</creationDate>
+	<creationDate>27-09-2026</creationDate>
 
 	<author>Ad Stam</author>
 	<authorEmail>info@adstam.nl</authorEmail>
@@ -11,7 +11,7 @@
 	<copyright>Copyright (C) 2025 Ad Stam. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 
-	<version>0.4.5</version>
+	<version>1.0.0</version>
 
 	<description>COM_SIMPLEHUB_XML_DESCRIPTION</description>
 

@@ -50,16 +50,35 @@ daarbij behouden.
 
 Ga naar het SimpleHub Dashboard en kies **Nieuw** om een groep aan te maken. Groepen zijn
 te herschikken door ze te verslepen op het Dashboard.
+![dashboard](afbeeldingen.md/dashboard.png)
 
 ### Een Hub-item toevoegen
 
+
 Open een groep en kies **Nieuw** om een item toe te voegen. Kies eerst het type bestemming
 (component, plugin, module, artikel of externe URL) en vervolgens de concrete bestemming.
+![detailscherm](afbeeldingen.md/detailscherm1.png)
+
+Afhankelijk van de keuze kan het scherm zich anders voordoen.
+
+*Deze indeling bij Extensies*
+![detailscherm](afbeeldingen.md/detailscherm2.png)
+
+*Deze indeling bij Artikelen*
+![detailscherm](afbeeldingen.md/detailscherm3.png)
+
+*Deze indeling bij Externe URL's*
+![detailscherm](afbeeldingen.md/detailscherm4.png)
+
 Is de titel nog leeg, dan stelt SimpleHub automatisch een titel voor op basis van je keuze.
 
 Bij een externe URL wordt de bereikbaarheid gecontroleerd zodra je het URL-veld verlaat, en
 kies je of de link in hetzelfde venster, een nieuw tabblad, of een nieuw (los) venster moet
 openen.
+
+**Andere icoon kiezen**
+Als er een andere iccon gewenst is dan de standaard icoon open dan het keuze scherm voor iconen.
+![detailscherm](afbeeldingen.md/iconen.png)
 
 ### Groep verwijderen
 
