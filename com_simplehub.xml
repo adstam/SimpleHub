@@ -11,7 +11,7 @@
 	<copyright>Copyright (C) 2025 Ad Stam. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 
-	<version>0.4.0</version>
+	<version>0.4.1</version>
 
 	<description>COM_SIMPLEHUB_XML_DESCRIPTION</description>
 
@@ -69,7 +69,7 @@
 	</uninstall>
 	
 	<updateservers>
-        <server type="extension" priority="1" name="SimpleLogin Updates">https://raw.githubusercontent.com/adstam/com_simplehub/main/update.xml</server>
+        <server type="extension" priority="1" name="SimpleHub Updates">https://raw.githubusercontent.com/adstam/com_simplehub/main/update.xml</server>
     </updateservers>
 
 </extension>
