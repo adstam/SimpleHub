@@ -1,0 +1,18 @@
+.sh-item {
+    padding: .55rem 1rem;
+    gap: .75rem;
+}
+
+.sh-item:hover {
+    text-decoration: none;
+}
+
+.sh-icon {
+    width: 1.5rem;
+    text-align: center;
+    flex: 0 0 1.5rem;
+}
+
+.sh-title {
+    font-weight: 500;
+}

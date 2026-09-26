@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<inlinehelp button="show"/>
+
+	<fieldset
+		name="component"
+		label="COM_SIMPLEHUB_FIELDSET_GENERAL"
+	>
+	<field
+		name="titlebar_shortcut"
+		type="TitlebarState"
+		addfieldprefix="StamPlusJ\Component\Simplehub\Administrator\Field"
+		label="COM_SIMPLEHUB_FIELD_TITLEBAR_SHORTCUT_LABEL"
+		description="COM_SIMPLEHUB_FIELD_TITLEBAR_SHORTCUT_DESC"
+	/>
+	</fieldset>
+
+</config>

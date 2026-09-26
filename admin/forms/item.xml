@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+
+    <fieldset
+        name="basic"
+        label="COM_SIMPLEHUB_FIELDSET_GENERAL">
+
+        <field
+            name="id"
+            type="hidden"
+        />
+
+        <field
+            name="group_id"
+            type="sql"
+            label="COM_SIMPLEHUB_FIELD_GROUP"
+            required="true"
+            query="SELECT id, title FROM #__simplehub_groups WHERE published = 1 ORDER BY ordering"
+            key_field="id"
+            value_field="title"
+            translate="false"
+            class="form-select"
+        />
+		
+		<field
+			name="type"
+			type="list"
+			label="COM_SIMPLEHUB_FIELD_TYPE"
+			required="true">
+
+			<option value="">COM_SIMPLEHUB_SELECT</option>
+			<option value="component">COM_SIMPLEHUB_ITEMTYPE_COMPONENT</option>
+			<option value="plugin">COM_SIMPLEHUB_ITEMTYPE_PLUGIN</option>
+			<option value="module">COM_SIMPLEHUB_ITEMTYPE_MODULE</option>
+			<option value="article">COM_SIMPLEHUB_ITEMTYPE_ARTICLE</option>
+			<option value="external">COM_SIMPLEHUB_ITEMTYPE_EXTERNAL</option>
+
+		</field>
+
+		<field
+			name="target_external"
+			type="url"
+			label="COM_SIMPLEHUB_FIELD_EXTERNAL"
+			description="COM_SIMPLEHUB_FIELD_EXTERNAL_DESC"
+			filter="raw"
+			showon="type:external"
+			required="true"
+			validate="url"
+		/>
+		
+        <field
+            name="external_target"
+            type="list"
+            label="COM_SIMPLEHUB_FIELD_EXTERNAL_TARGET"
+            description="COM_SIMPLEHUB_FIELD_EXTERNAL_TARGET_DESC"
+            showon="type:external"
+            default="_blank"
+            class="form-select"
+        >
+            <option value="_blank">COM_SIMPLEHUB_EXTERNAL_TARGET_NEW</option>
+            <option value="_self">COM_SIMPLEHUB_EXTERNAL_TARGET_SAME</option>
+            <option value="popup">COM_SIMPLEHUB_EXTERNAL_TARGET_WINDOW</option>
+        </field>
+
+        <field
+            name="target_component"
+            type="components"
+            label="COM_SIMPLEHUB_FIELD_COMPONENT"
+            showon="type:component"
+            multiple="false"
+        />
+
+        <field
+            name="target_plugin"
+            type="sql"
+            label="COM_SIMPLEHUB_FIELD_PLUGIN"
+            showon="type:plugin"
+            query="SELECT extension_id AS value, CONCAT(name, ' — ', folder, '/', element) AS title FROM #__extensions WHERE type = 'plugin' ORDER BY folder, name"
+            key_field="value"
+            value_field="title"
+            translate="false"
+            class="form-select"
+        />
+
+        <field
+            name="target_module"
+            type="sql"
+            label="COM_SIMPLEHUB_FIELD_MODULE"
+            showon="type:module"
+            query="SELECT a.id AS value, CONCAT(CASE WHEN a.client_id = 0 THEN 'Site' ELSE 'Administrator' END, ' — ', CASE WHEN COALESCE(e.enabled, 0) = 1 THEN 'Actief' ELSE 'Niet actief' END, ' — ', a.title) AS title FROM #__modules AS a LEFT JOIN #__extensions AS e ON e.element = a.module AND e.type = 'module' AND e.client_id = a.client_id WHERE a.published = 1 ORDER BY a.client_id, e.enabled DESC, a.title"
+            key_field="value"
+            value_field="title"
+            translate="false"
+            class="form-select"
+        />
+
+        <field
+            addfieldprefix="Joomla\Component\Content\Administrator\Field"
+            name="target_article"
+            type="modal_article"
+            label="COM_SIMPLEHUB_FIELD_ARTICLE"
+            showon="type:article"
+            select="true"
+            new="false"
+            edit="false"
+            clear="true"
+        />		
+        <field
+            name="title"
+            type="text"
+            label="JGLOBAL_TITLE"
+            required="true"
+        />
+
+        <field
+            name="description"
+            type="textarea"
+            label="COM_SIMPLEHUB_FIELD_DESCRIPTION"
+            rows="5"
+        />
+
+        <field
+            name="icon"
+            type="Iconpicker"
+            addfieldprefix="StamPlusJ\Component\Simplehub\Administrator\Field"
+            label="COM_SIMPLEHUB_FIELD_ICON"
+        />
+
+    </fieldset>
+
+</form>

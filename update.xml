@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updates>
+	<update>
+		<name>COM-Simplehub</name>
+		<description>COM_SIMPLEHUB_XML_DESCRIPTION</description>
+		<element>com_simplehub</element>
+		<type>component</type>
+		<version>0.37.6</version>
+		<client>admin</client>
+		<folder>system</folder>
+		<downloads>
+			<downloadurl type="full" format="zip">https://raw.githubusercontent.com/adstam/simplelogin/main/simplelogin.zip</downloadurl>
+		</downloads>
+		<sha256>83b5fc4b48a6631d5f94d19539b7aad4e6134daa3a7e4c91af6d6715642ceb07</sha256>
+		<targetplatform name="joomla" version="[56].[1234]" />
+		<php_minimum>8.1</php_minimum>
+	</update>
+</updates>

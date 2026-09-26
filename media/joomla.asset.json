@@ -1,0 +1,50 @@
+{
+    "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+    "name": "com_simplehub",
+    "version": "1.0.0",
+    "description": "SimpleHub media assets",
+    "license": "GPL-2.0-or-later",
+    "assets": [
+        {
+            "name": "com_simplehub.sortable",
+            "type": "script",
+            "uri": "com_simplehub/vendor/sortable.min.js"
+        },
+        {
+            "name": "com_simplehub.dashboard",
+            "type": "script",
+            "uri": "com_simplehub/dashboard.js",
+            "dependencies": [
+                "com_simplehub.sortable"
+            ],
+            "attributes": {
+                "defer": true
+            }
+        },
+        {
+            "name": "com_simplehub.group",
+            "type": "script",
+            "uri": "com_simplehub/group.js"
+        },
+        {
+            "name": "com_simplehub.dashboard.css",
+            "type": "style",
+            "uri": "com_simplehub/dashboard.css"
+        },
+        {
+            "name": "com_simplehub.item",
+            "type": "script",
+            "uri": "com_simplehub/item.js"
+        },
+        {
+            "name": "com_simplehub.titlebar-config",
+            "type": "script",
+            "uri": "com_simplehub/titlebar-config.js"
+        },
+        {
+            "name": "com_simplehub.titlebar.css",
+            "type": "style",
+            "uri": "com_simplehub/titlebar.css"
+        }
+    ]
+}

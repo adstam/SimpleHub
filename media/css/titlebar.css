@@ -1,0 +1,19 @@
+/* SimpleHub — titelbalk-snelkoppeling (Sprint 24 PoC)
+   Volgt de bestaande sh-*-naamgeving uit dashboard.css. */
+
+.sh-titlebar-link {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    height: 100%;
+    padding: 0 .75rem 0 .5rem;
+    margin-right: .5rem;
+    border-right: 1px solid var(--border-color, rgba(0, 0, 0, .15));
+    color: inherit;
+    text-decoration: none;
+}
+
+.sh-titlebar-link:hover {
+    text-decoration: none;
+    opacity: .8;
+}

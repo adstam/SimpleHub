@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="component" method="upgrade">
+	<name>SimpleHub</name>
+
+	<creationDate>26-09-2026</creationDate>
+
+	<author>Ad Stam</author>
+	<authorEmail>info@adstam.nl</authorEmail>
+	<authorUrl>https://demo.adstam.nl</authorUrl>
+
+	<copyright>Copyright (C) 2025 Ad Stam. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+
+	<version>0.37.6</version>
+
+	<description>COM_SIMPLEHUB_XML_DESCRIPTION</description>
+
+	<namespace path="src">StamPlusJ\Component\Simplehub</namespace>
+
+	<scriptfile>script.php</scriptfile>
+
+	<files folder="site">
+		<folder>language</folder>
+		<folder>src</folder>
+		<file>simplehub.php</file>
+	</files>
+
+	<administration>
+
+		<!-- FIX: Spaties/enters verwijderd en naam uitgelijnd met de extensienaam -->
+		<menu link="option=com_simplehub" img="class:simplehub">SimpleHub</menu>
+
+		<!-- FIX: Het onjuiste <config> blok is hier volledig verwijderd -->
+
+		<files folder="admin">
+			<folder>language</folder>
+			<folder>services</folder>
+			<folder>src</folder>
+			<folder>tmpl</folder>
+			<folder>forms</folder>
+			<folder>sql</folder>
+			<file>config.xml</file>
+		</files>
+
+	</administration>
+
+	<media destination="com_simplehub" folder="media">
+		<file>joomla.asset.json</file>	
+		<folder>css</folder>
+		<folder>js</folder>		
+	</media>
+
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.sql</file>
+		</sql>
+	</install>
+
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates</schemapath>
+		</schemas>
+	</update>
+
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.sql</file>
+		</sql>
+	</uninstall>
+	
+	<updateservers>
+        <server type="extension" priority="1" name="SimpleLogin Updates">https://raw.githubusercontent.com/adstam/com_simplehub/main/update.xml</server>
+    </updateservers>
+
+</extension>
