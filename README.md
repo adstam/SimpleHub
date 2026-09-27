@@ -41,7 +41,7 @@ daarbij behouden.
 
 ### Vereisten
 
-* Joomla 6 of hoger.
+* Joomla 5.4 of hoger.
 * Een MySQL-compatibele database (SimpleHub gebruikt twee eigen databasetabellen).
 
 ## Gebruik

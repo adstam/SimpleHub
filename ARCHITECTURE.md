@@ -2,9 +2,9 @@
 
 # SimpleHub Architectuur
 
-**Versie:** Sprint 17
+**Versie:** 1.0.0
 **Status:** Actueel
-**Laatste wijziging:** Augustus 2026 (bijgewerkt tijdens Sprint 18 — technische inventarisatie)
+**Laatste wijziging:** September 2026 
 
 ---
 
@@ -291,7 +291,7 @@ De database blijft hiermee de enige bron van waarheid.
 
 # 9. Afwijking ten opzichte van standaard Joomla
 
-Tijdens Sprint 9.2 is vastgesteld dat de standaard implementatie van:
+Tijdens de bouw is vastgesteld dat de standaard implementatie van:
 
 ```text
 FormController::save()
@@ -364,7 +364,7 @@ De controller verzorgt uitsluitend:
 De verwijderlogica blijft in `AdminModel`. De database-foreign key `#__simplehub_items_group` is
 `ON DELETE CASCADE`, waardoor items van de groep automatisch meeverwijderd worden.
 
-## 10.1 Robuustere groep-verwijderflow (Sprint 19)
+## 10.1 Robuustere groep-verwijderflow 
 
 Een groep zonder items gedraagt zich ongewijzigd ten opzichte van het bovenstaande: een kale
 `confirm()` op het Dashboard, gevolgd door het standaardpad hierboven.
@@ -421,7 +421,7 @@ Zie `ARCHITECTURE_APPENDIX.md`, ADR-1 en ADR-2, voor de volledige architectuurmo
 
 # 10a. Items binnen een Hubgroep
 
-Sinds Sprint 14 beheert SimpleHub naast Hubgroepen ook Hub-items: de individuele snelkoppelingen die
+SimpleHub beheert naast Hubgroepen ook Hub-items: de individuele snelkoppelingen die
 binnen een groep worden getoond.
 
 ```text
@@ -450,8 +450,7 @@ Save & New.
 
 **Afwijking ten opzichte van `GroupController`:** bij een mislukte opslag zet `ItemController::save()`
 de ingevoerde `jform`-waarden terug in de Joomla user state (`com_simplehub.edit.item.data`), zodat het
-formulier bij het opnieuw tonen niet leeg is. Dit is in Sprint 17.5 opgelost naar aanleiding van
-Bevinding 17.4. `GroupController::save()` doet dit niet — zie `ROADMAP_INTERN.md`, item #1.
+formulier bij het opnieuw tonen niet leeg is. 
 
 ## Volgorde van Items binnen een groep
 
@@ -489,10 +488,10 @@ Een Hub-item verwijst altijd naar precies één van vijf typen bestemmingen:
 
 | Type | Geïntroduceerd | Bestemming |
 |---|---|---|
-| `component` | Sprint 14 | Een Joomla-administratorcomponent (optioneel met specifiek menu-item) |
-| `plugin` | Sprint 16 | Een geïnstalleerde Joomla-plugin, geselecteerd op `extension_id` |
-| `module` | Sprint 16 | Een module-instantie uit `#__modules` |
-| `article` | Sprint 16 | Een artikel, geselecteerd via Joomla's `modal_article`-veld |
+| `component` | versie 1.0.0 | Een Joomla-administratorcomponent (optioneel met specifiek menu-item) |
+| `plugin` | versie 1.0.0 | Een geïnstalleerde Joomla-plugin, geselecteerd op `extension_id` |
+| `module` | versie 1.0.0 | Een module-instantie uit `#__modules` |
+| `article` | versie 1.0.0 | Een artikel, geselecteerd via Joomla's `modal_article`-veld |
 | `external` | Sprint 17 | Een willekeurige externe URL |
 
 Het Item-formulier (`item.xml`) toont per type een eigen, type-specifiek doelveld
@@ -529,20 +528,18 @@ Joomla-status gecontroleerd; dit type krijgt altijd het vaste globe-icoon.
 
 ### Dynamische iconresolutie
 
-Sinds Sprint 15 is het icoon van een Item **geen** opgeslagen eigenschap meer, maar wordt het bij het
+Het icoon van een Item is **geen** opgeslagen eigenschap maar wordt het bij het
 tonen dynamisch bepaald. De resolver doorloopt hiervoor het gevonden administrator-menu-item en diens
 ouders (`parent_id`); is daar geen bruikbaar icoon, dan valt de resolver terug op het hoofdmenu-item van
 de extensie, en als laatste stap op het icoon van de Joomla-componentengroep (met `component` als vaste
 eindfallback). Zowel Joomla `img`-waarden als `menu_icon_class` worden ondersteund.
 
 De iconresolutie wordt aangeroepen vanuit twee plekken: `HubRepository::getGroups()` (Dashboard) en
-`ItemModel::getItem()` / `ItemController::icon()` (Item-formulier, initieel en live tijdens het invullen —
-Sprint 26).
+`ItemModel::getItem()` / `ItemController::icon()` (Item-formulier, initieel en live tijdens het invullen.
 
-### Override: handmatig gekozen icoon (Sprint 28)
+### Override: handmatig gekozen icoon
 
-Het `icon`-veld in `item.xml` en de bijbehorende databasekolom, sinds Sprint 15 zonder functie in deze
-resolutieketen (`ROADMAP_INTERN.md`, item #5), zijn sinds Sprint 28 de opslagplaats voor een handmatig
+Het `icon`-veld in `item.xml` en de bijbehorende databasekolom zijn de opslagplaats voor een handmatig
 door de beheerder gekozen FontAwesome-icoon (`IconpickerField`, `admin/src/Field/`). De kolom bevat dan de
 volledige, direct bruikbare class-string (bijv. `fa-solid fa-address-book`); een lege kolom betekent nog
 steeds "automatisch", exact het hierboven beschreven gedrag.
@@ -558,7 +555,7 @@ aanroepers. Zie `ARCHITECTURE_APPENDIX.md`, ADR-7, voor de volledige onderbouwin
 
 # 10d. Externe URL's en SSRF-bescherming
 
-Het itemtype `external` (Sprint 17) introduceert de mogelijkheid om vanuit SimpleHub naar een
+Het itemtype `external` geeft de mogelijkheid om vanuit SimpleHub naar een
 willekeurige, door de beheerder opgegeven URL te linken. Omdat dit verzoek server-side (vanaf de Joomla-
 server) wordt uitgevoerd, is expliciete bescherming tegen Server-Side Request Forgery (SSRF) nodig:
 zonder die bescherming zou een kwaadwillende beheerder (of een aanvaller met toegang tot het
@@ -593,7 +590,7 @@ Blur op URL-veld (optioneel, kan traag zijn):
 item.js → ItemController::checkUrl() → ExternalUrlChecker::check() → JsonResponse
 ```
 
-Deze scheiding is een bewuste architectuurkeuze (Sprint 17.4/17.5): de bereikbaarheidscontrole
+Deze scheiding is een bewuste architectuurkeuze: de bereikbaarheidscontrole
 (netwerk, kan traag of instabiel zijn) is losgekoppeld van de opslaan-flow (moet snel en voorspelbaar
 blijven), terwijl de host-allowlist — de daadwerkelijke SSRF-bescherming — op **beide** plekken
 afgedwongen blijft, omdat dit geen controle is die aan de client overgelaten kan worden.
@@ -601,7 +598,7 @@ afgedwongen blijft, omdat dit geen controle is die aan de client overgelaten kan
 **Bekende, nog niet gedichte kwetsbaarheid:** de host-allowlist wordt alleen tegen de opgegeven URL
 gecontroleerd. Het daadwerkelijke HTTP-verzoek in `check()`/`pingUrl()` volgt HTTP-redirects zonder dit
 opnieuw tegen de allowlist te toetsen, waardoor een toegestane host via een redirect alsnog naar een
-niet-toegestane host zou kunnen wijzen. Zie `ROADMAP_INTERN.md`, item #2.
+niet-toegestane host zou kunnen wijzen. 
 
 ---
 
@@ -628,24 +625,3 @@ SimpleHub hanteert de volgende uitgangspunten.
 
 ---
 
-# 12. Status Sprint 17 / analyse Sprint 18
-
-Na Sprint 9.3 was de basis voor het beheren en ordenen van Hubgroepen voltooid. Sprint 14 tot en met 17
-hebben daar de volledige Item-functionaliteit aan toegevoegd:
-
-* toevoegen, wijzigen en verwijderen van Hub-items binnen een groep;
-* volgorde van Items binnen een groep (drag & drop, analoog aan groepsvolgorde);
-* vijf itemtypen: component, plugin, module, artikel en externe URL;
-* automatische titelinvulling op basis van het gekozen target;
-* dynamische iconresolutie (LinkResolver), losgekoppeld van een opgeslagen icoonwaarde;
-* SSRF-beschermde afhandeling van externe URL's, met een gescheiden vorm- en bereikbaarheidscontrole.
-
-Sprint 18 was een bewuste analysesprint, zonder functionele wijziging: een volledige technische
-inventarisatie van de codebase, met als resultaat `ROADMAP_INTERN.md` (nieuw) en de bijwerking van dit
-document en `ARCHITECTURE_APPENDIX.md` naar de actuele implementatie. De concrete bevindingen —
-inclusief het niet-opgeloste formulier-leegmaak-patroon bij `GroupController` en de SSRF-redirect-
-bevinding bij `ExternalUrlChecker` — staan in `ROADMAP_INTERN.md`, niet in dit document.
-
-De architectuur is voorbereid op de sprintvolgorde 19 t/m 29 richting v1.0.0 (robuustere
-groepsverwijdering, onderzoek naar een extern paneel en hoofdmenu-integratie, een zichtbaar/kiesbaar
-icoon per item, en de resterende taalbestanden).
